@@ -1,11 +1,13 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const root = () => {
   return (
     <>
       <header>
         <nav>
-          <h2>Kitchen Sink</h2>
+          <Link to="/">
+            <h2>University finder</h2>
+          </Link>
           <ul>
             <li>
               <NavLink to="/">Countries</NavLink>

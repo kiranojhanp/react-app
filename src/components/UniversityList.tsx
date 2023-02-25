@@ -45,7 +45,7 @@ const columns = [
 const UniversityList = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery(countryDetailsQuery(id));
-  if (data && data.length === 0) return <p>No data found for {id}</p>;
+  if (data && data.length === 0) return <p>No record found for {id}</p>;
 
   const table = useReactTable({
     data: data || [],
