@@ -10,7 +10,7 @@ const CountryDetail = () => {
     <>
       <Suspense fallback={<Loading />}>
         <Await
-          resolve={loaderData.countriesName}
+          resolve={loaderData.universities}
           errorElement={<div>Oops!</div>}
         >
           <UniversityList />
