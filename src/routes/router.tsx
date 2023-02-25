@@ -22,6 +22,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: "/react-app"
+});
 
 export { router };
