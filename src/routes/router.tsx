@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { loader as countriesLoader } from "../services/loaders";
+import { countriesLoader, countryDetailLoader } from "../loaders";
 
 import Root from "./Root";
 import Countries from "./Countries";
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
       {
         path: "/:id",
         element: <CountryDetail />,
+        loader: countryDetailLoader,
       },
     ],
   },

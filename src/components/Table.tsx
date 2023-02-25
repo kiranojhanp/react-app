@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { countriesQuery } from '../services/queries/countries';
+import { countriesQuery } from '../rquery/countries';
 
 import type { TName } from "../types/countries";
 
