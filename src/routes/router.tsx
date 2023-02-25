@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
 import { countriesLoader, countryDetailLoader } from "../loaders";
 
@@ -6,7 +6,7 @@ import Root from "./Root";
 import Countries from "./Countries";
 import CountryDetail from "./CountryDetail";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
@@ -31,8 +31,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-], {
-  basename: "/react-app/"
-});
+]);
 
 export { router };

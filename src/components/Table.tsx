@@ -125,7 +125,15 @@ const Table = () => {
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
+            <td>
+              <span>
+                Page{" "}
+                <strong>
+                  {table.getState().pagination.pageIndex + 1} of{" "}
+                  {table.getPageCount()}
+                </strong>
+              </span>
+            </td>
             <td></td>
             <td>
               <Pagination table={table} />
