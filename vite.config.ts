@@ -14,7 +14,7 @@ function renderChunks(deps: Record<string, string>) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: "/react-app/",
+  base: "./",
   build: {
     sourcemap: false,
     rollupOptions: {
