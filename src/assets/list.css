@@ -1,0 +1,17 @@
+main ul {
+  column-count: 2;
+  flex-grow: 1;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+main ul > li {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  main ul {
+    column-count: 1;
+  }
+}

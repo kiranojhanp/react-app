@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { countriesQuery } from "../rquery/queries";
 
 import type { TName } from "../types/countries";
+import Pagination from "./Pagination";
 
 const columnHelper = createColumnHelper<TName>();
 
@@ -33,7 +34,7 @@ const columns = [
 ];
 
 const Table = () => {
-  const { data, isLoading } = useQuery(countriesQuery);
+  const { data } = useQuery(countriesQuery);
 
   const table = useReactTable({
     data: data || [],
@@ -82,32 +83,7 @@ const Table = () => {
             <td></td>
             <td></td>
             <td>
-              <div>
-                <button
-                  onClick={() => table.setPageIndex(0)}
-                  disabled={!table.getCanPreviousPage()}
-                >
-                  {"<<"}
-                </button>
-                <button
-                  onClick={() => table.previousPage()}
-                  disabled={!table.getCanPreviousPage()}
-                >
-                  {"<"}
-                </button>
-                <button
-                  onClick={() => table.nextPage()}
-                  disabled={!table.getCanNextPage()}
-                >
-                  {">"}
-                </button>
-                <button
-                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                  disabled={!table.getCanNextPage()}
-                >
-                  {">>"}
-                </button>
-              </div>
+              <Pagination table={table} />
             </td>
           </tr>
         </tfoot>

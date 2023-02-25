@@ -8,9 +8,9 @@ const countriesQuery = {
   },
 };
 
-const countryDetailsQuery = (id: string) => ({
+const countryDetailsQuery = (id?: string) => ({
   queryKey: ["country-details", id],
-  queryFn: async () => await getUniversitiesByCountry(id),
+  queryFn: async () => await getUniversitiesByCountry(id || ""),
   options: {
     staleTime: 10000,
   },

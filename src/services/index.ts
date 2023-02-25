@@ -9,7 +9,7 @@ const getCountries = async (continent: string) => {
   return data.map(({ name }) => name);
 };
 
-const getUniversitiesByCountry = async (country: string): Promise<TUniversity> => {
+const getUniversitiesByCountry = async (country: string): Promise<TUniversity[]> => {
   const data = await fetch(
     `http://universities.hipolabs.com/search?country=${country}`
   );

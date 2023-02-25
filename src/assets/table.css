@@ -50,13 +50,14 @@ table > tfoot > tr > td:last-child {
   float: right;
 }
 
-table > tfoot > tr > td:last-child > div {
+.pagination {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 4px;
 }
 
-table > tfoot > tr > td:last-child > div > button {
+.pagination > button {
   border: 1px solid #444;
   border-radius: 50%;
   width: 2rem;
