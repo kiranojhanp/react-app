@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
+import Loading from '../components/Loading';
+
 import Table from "../components/Table";
 
 const Countries = () => {
@@ -7,7 +9,7 @@ const Countries = () => {
 
   return (
     <>
-      <Suspense fallback={<p>Taking longer than expected! Wait a while...</p>}>
+      <Suspense fallback={<Loading />}>
         <Await
           resolve={loaderData.countriesName}
           errorElement={<div>Oops!</div>}
