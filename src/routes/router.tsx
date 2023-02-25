@@ -1,21 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { loader as countriesLoader } from "../services/loaders";
-import SuspenseWrapper from '../components/SuspenseWrapper';
+
+import Root from "./Root";
+import Countries from "./Countries";
+import CountryDetail from "./CountryDetail";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <SuspenseWrapper path="routes/Root" />,
+    element: <Root />,
     children: [
       {
         path: "/",
-        element: <SuspenseWrapper path="routes/Countries" />,
+        element: <Countries />,
         loader: countriesLoader,
       },
       {
         path: "/:id",
-        element: <SuspenseWrapper path="routes/CountryDetail" />,
+        element: <CountryDetail />,
       },
     ],
   },
