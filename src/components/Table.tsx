@@ -1,11 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { countriesQuery } from '../rquery/queries';
+import { useQuery } from "@tanstack/react-query";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { countriesQuery } from "../rquery/queries";
 
 import type { TName } from "../types/countries";
-
 
 const columnHelper = createColumnHelper<TName>();
 
@@ -23,7 +28,7 @@ const columns = [
     id: "action",
     cell: (info) => <Link to={`/${info.getValue()}`}>Visit</Link>,
     header: () => <span>Action</span>,
-    size: 140,
+    size: 80,
   }),
 ];
 
@@ -34,6 +39,7 @@ const Table = () => {
     data: data || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   const lastHeaderGroup = useMemo(() => [...table.getHeaderGroups()].pop(), []);
@@ -71,6 +77,44 @@ const Table = () => {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>
+              <div>
+                <button
+                  className="border rounded p-1"
+                  onClick={() => table.setPageIndex(0)}
+                  disabled={!table.getCanPreviousPage()}
+                >
+                  {"<<"}
+                </button>
+                <button
+                  className="border rounded p-1"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                >
+                  {"<"}
+                </button>
+                <button
+                  className="border rounded p-1"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                >
+                  {">"}
+                </button>
+                <button
+                  className="border rounded p-1"
+                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  disabled={!table.getCanNextPage()}
+                >
+                  {">>"}
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );

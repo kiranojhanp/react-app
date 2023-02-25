@@ -3,6 +3,7 @@ table {
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
+  table-layout: fixed;
   width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
@@ -27,6 +28,12 @@ table > tbody > tr {
   border-bottom: 1px solid #dddddd;
 }
 
+table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 table > tbody > tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
@@ -37,4 +44,22 @@ table > tbody > tr:last-of-type {
 
 table > tbody > tr:hover {
   color: #009879;
+}
+
+table > tfoot > tr > td:last-child {
+  float: right;
+}
+
+table > tfoot > tr > td:last-child > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+table > tfoot > tr > td:last-child > div > button {
+  border: 1px solid #444;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
 }
