@@ -1,19 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   createColumnHelper,
+  FilterFn,
   flexRender,
   getCoreRowModel,
+  getFacetedMinMaxValues,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { rankItem } from "@tanstack/match-sorter-utils";
 import { countriesQuery } from "../rquery/queries";
 
 import type { TName } from "../types/countries";
+
 import Pagination from "./Pagination";
 
 const columnHelper = createColumnHelper<TName>();
+
+const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+  const itemRank = rankItem(row.getValue(columnId), value);
+  addMeta({
+    itemRank,
+  });
+  return itemRank.passed;
+};
 
 const columns = [
   columnHelper.accessor("common", {
@@ -34,18 +49,48 @@ const columns = [
 ];
 
 const Table = () => {
-  const { data } = useQuery(countriesQuery);
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [continent, setContinent] = useState("asia");
+  const { data } = useQuery(countriesQuery(continent));
 
   const table = useReactTable({
     data: data || [],
     columns,
+    filterFns: {
+      fuzzy: fuzzyFilter,
+    },
+    state: {
+      globalFilter,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
   });
 
   const lastHeaderGroup = useMemo(() => [...table.getHeaderGroups()].pop(), []);
   return (
     <div>
+      <div className="search-section">
+        <input
+          type="text"
+          value={globalFilter ?? ""}
+          onChange={(event_) => setGlobalFilter(event_.target.value)}
+          placeholder="Search all columns..."
+        />
+
+        <select
+          name="continent"
+          value={continent}
+          onChange={(event) => setContinent(event.target.value)}
+        >
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+        </select>
+      </div>
+
       <table>
         <colgroup>
           {lastHeaderGroup?.headers.map(({ getSize, id }) => (

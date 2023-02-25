@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tanstack/match-sorter-utils': ^8.7.6
   '@tanstack/react-query': ^4.24.10
   '@tanstack/react-query-devtools': ^4.24.10
   '@tanstack/react-table': ^8.7.9
@@ -15,6 +16,7 @@ specifiers:
   vite-plugin-dynamic-import: ^1.2.7
 
 dependencies:
+  '@tanstack/match-sorter-utils': 8.7.6
   '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.24.10_636dldj5wfr5vkyyqzs5k363kq
   '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y

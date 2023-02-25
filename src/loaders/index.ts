@@ -4,7 +4,7 @@ import { countriesQuery, countryDetailsQuery } from "../rquery/queries";
 
 export async function countriesLoader() {
   return defer({
-    countriesName: queryClient.fetchQuery(countriesQuery),
+    countriesName: queryClient.fetchQuery(countriesQuery("asia")),
   });
 }
 

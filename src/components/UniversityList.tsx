@@ -1,16 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   createColumnHelper,
+  FilterFn,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { Link, useParams } from "react-router-dom";
+import { rankItem } from "@tanstack/match-sorter-utils";
 import { countryDetailsQuery } from "../rquery/queries";
 
 import type { TUniversity } from "../types/university";
 import Pagination from "./Pagination";
+
+const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+  const itemRank = rankItem(row.getValue(columnId), value);
+  addMeta({
+    itemRank,
+  });
+  return itemRank.passed;
+};
 
 const columnHelper = createColumnHelper<TUniversity>();
 
@@ -52,6 +62,9 @@ const UniversityList = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    filterFns: {
+      fuzzy: fuzzyFilter,
+    },
   });
 
   return (
