@@ -20,7 +20,7 @@ const columns = [
     cell: (info) => info.getValue(),
     header: () => <span>University</span>,
   }),
-  columnHelper.accessor((row) => row.state, {
+  columnHelper.accessor((row) => row["state-province"], {
     id: "State",
     cell: (info) => info.getValue() ?? <i>Not available</i>,
     header: () => <span>State</span>,
