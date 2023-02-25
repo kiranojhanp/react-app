@@ -14,7 +14,6 @@ const Countries = () => {
           errorElement={<div>Oops!</div>}
         >
           <SuspenseWrapper path='components/Table'  />
-          {/* <Table /> */}
         </Await>
       </Suspense>
     </>

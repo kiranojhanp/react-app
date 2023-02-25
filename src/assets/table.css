@@ -20,7 +20,6 @@ table td {
 
 table > tbody > tr {
   border-bottom: 1px solid #dddddd;
-  /* cursor: pointer; */
 }
 
 table > tbody > tr:nth-of-type(even) {
