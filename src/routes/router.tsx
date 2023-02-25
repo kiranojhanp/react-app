@@ -21,6 +21,14 @@ const router = createBrowserRouter([
         element: <CountryDetail />,
         loader: countryDetailLoader,
       },
+      {
+        path: "/blog",
+        element: <span>Blog page</span>,
+      },
+      {
+        path: "/profile",
+        element: <span>Profile page</span>,
+      },
     ],
   },
 ], {
