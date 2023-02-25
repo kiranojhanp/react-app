@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, Tahoma, Serif;
+  color: #263238;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
