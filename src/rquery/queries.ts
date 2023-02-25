@@ -1,4 +1,4 @@
-import { getCountries, getUniversitiesByCountry } from "../services/countries";
+import { getCountries, getUniversitiesByCountry } from "../services";
 
 const countriesQuery = {
   queryKey: ["countries"],
