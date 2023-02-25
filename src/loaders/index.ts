@@ -1,6 +1,6 @@
 import { defer } from "react-router-dom";
 import queryClient from "../rquery/queryClient";
-import { countriesQuery, countryDetailsQuery } from "../rquery/countries";
+import { countriesQuery, countryDetailsQuery } from "../rquery/queries";
 
 export async function countriesLoader() {
   return defer({
