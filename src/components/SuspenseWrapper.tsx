@@ -1,13 +1,16 @@
-import { Suspense } from "react";
-import loadable from "@loadable/component";
-
+import { lazy, Suspense } from "react";
 interface SuspenseWrapperProps {
   path: string;
 }
 
 const SuspenseWrapper = ({ path }: SuspenseWrapperProps) => {
-  const LazyComponent = loadable(() => import(`../${path}`));
-  return <LazyComponent />;
+  const LazyComponent = lazy(() => import(`../${path}.tsx`));
+
+  return (
+    <Suspense fallback={null}>
+      <LazyComponent />
+    </Suspense>
+  );
 };
 
 export default SuspenseWrapper;

@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
-import SuspenseWrapper from '../components/SuspenseWrapper';
 import Table from "../components/Table";
 
 const Countries = () => {
@@ -13,7 +12,7 @@ const Countries = () => {
           resolve={loaderData.countriesName}
           errorElement={<div>Oops!</div>}
         >
-          <SuspenseWrapper path='components/Table'  />
+          <Table />
         </Await>
       </Suspense>
     </>
