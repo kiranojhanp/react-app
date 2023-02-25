@@ -1,5 +1,5 @@
 import type { TCountry } from "../types/countries";
-import { TUniversity } from '../types/university';
+import { TRawUniversity, TUniversity } from "../types/university";
 
 const getCountries = async (continent: string) => {
   const response = await fetch(
@@ -9,11 +9,15 @@ const getCountries = async (continent: string) => {
   return data.map(({ name }) => name);
 };
 
-const getUniversitiesByCountry = async (country: string): Promise<TUniversity[]> => {
-  const data = await fetch(
+const getUniversitiesByCountry = async (country: string) => {
+  const response = await fetch(
     `http://universities.hipolabs.com/search?country=${country}`
   );
-  return await data.json();
+  const data = (await response.json()) as TRawUniversity[];
+  return data.map((item) => ({
+    state: item["state-province"],
+    ...item,
+  }));
 };
 
 export { getCountries, getUniversitiesByCountry };

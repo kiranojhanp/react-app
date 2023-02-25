@@ -20,9 +20,10 @@ const columns = [
     cell: (info) => info.getValue(),
     header: () => <span>University</span>,
   }),
-  columnHelper.accessor((row) => row.country, {
-    id: "Country",
-    header: () => <span>Country</span>,
+  columnHelper.accessor((row) => row.state, {
+    id: "State",
+    cell: (info) => info.getValue() ?? <i>Not available</i>,
+    header: () => <span>State</span>,
   }),
   columnHelper.accessor((row) => row.alpha_two_code, {
     id: "Country code",
@@ -58,12 +59,14 @@ const UniversityList = () => {
       <ul>
         {table.getRowModel().rows.map((row) => (
           <li key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <p key={cell.id}>
-                <strong>{cell.column.id}:</strong>{" "}
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </p>
-            ))}
+            {row.getVisibleCells().map((cell) => {
+              return (
+                <p key={cell.id}>
+                  <strong>{cell.column.id}:</strong>{" "}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </p>
+              );
+            })}
           </li>
         ))}
       </ul>
