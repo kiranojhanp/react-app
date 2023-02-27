@@ -1,4 +1,4 @@
-import { createHashRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { countriesLoader, countryDetailLoader } from "../loaders";
 
@@ -6,7 +6,7 @@ import Root from "./Root";
 import Countries from "./Countries";
 import CountryDetail from "./CountryDetail";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
