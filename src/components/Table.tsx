@@ -4,9 +4,7 @@ import {
   FilterFn,
   flexRender,
   getCoreRowModel,
-  getFacetedMinMaxValues,
   getFacetedRowModel,
-  getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
@@ -49,8 +47,12 @@ const columns = [
 ];
 
 const Table = () => {
-  const [globalFilter, setGlobalFilter] = useState("");
-  const [continent, setContinent] = useState(localStorage.getItem("continent") || "asia");
+  const [globalFilter, setGlobalFilter] = useState(
+    localStorage.getItem("country") || ""
+  );
+  const [continent, setContinent] = useState(
+    localStorage.getItem("continent") || "asia"
+  );
   const { data } = useQuery(countriesQuery(continent));
 
   const table = useReactTable({
@@ -77,7 +79,10 @@ const Table = () => {
         <input
           type="text"
           value={globalFilter ?? ""}
-          onChange={(event_) => setGlobalFilter(event_.target.value)}
+          onChange={(event_) => {
+            setGlobalFilter(event_.target.value);
+            localStorage.setItem("country", event_.target.value);
+          }}
           placeholder="Search all columns..."
         />
 
@@ -85,8 +90,8 @@ const Table = () => {
           name="continent"
           value={continent}
           onChange={(event) => {
-            setContinent(event.target.value)
-            localStorage.setItem("continent", event.target.value)
+            setContinent(event.target.value);
+            localStorage.setItem("continent", event.target.value);
           }}
         >
           <option value="asia">Asia</option>
@@ -116,15 +121,26 @@ const Table = () => {
         </thead>
 
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+          {table.getRowModel().rows.length ? (
+            table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr className="error-row">
+              <td>
+                <span>
+                  <strong>Error 404: </strong> No record found! Please try
+                  searching with other names
+                </span>
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
         <tfoot>
           <tr>

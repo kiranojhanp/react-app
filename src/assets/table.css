@@ -6,6 +6,7 @@ table {
   table-layout: fixed;
   width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
 table > thead {
@@ -79,4 +80,20 @@ table > tfoot > tr > td:last-child {
 
 .search-section > select {
   padding: 0.7rem;
+}
+
+.error-row {
+  height: 15rem;
+}
+
+.error-row > td {
+  text-overflow: clip;
+  white-space: pre-wrap;
+  position: absolute;
+}
+
+.error-row > td > span {
+  font-size: 1rem;
+  font-style: italic;
+  text-transform: uppercase;
 }
