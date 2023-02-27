@@ -50,7 +50,7 @@ const columns = [
 
 const Table = () => {
   const [globalFilter, setGlobalFilter] = useState("");
-  const [continent, setContinent] = useState("asia");
+  const [continent, setContinent] = useState(localStorage.getItem("continent") || "asia");
   const { data } = useQuery(countriesQuery(continent));
 
   const table = useReactTable({
@@ -84,7 +84,10 @@ const Table = () => {
         <select
           name="continent"
           value={continent}
-          onChange={(event) => setContinent(event.target.value)}
+          onChange={(event) => {
+            setContinent(event.target.value)
+            localStorage.setItem("continent", event.target.value)
+          }}
         >
           <option value="asia">Asia</option>
           <option value="europe">Europe</option>
